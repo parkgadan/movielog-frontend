@@ -6,12 +6,16 @@
   margin-top: 30px;
 }
 
-.main li {
+ul {
   display: grid;
-  grid-template-columns: repeat(5, 200px);
+  grid-template-columns: repeat(6, 184px);
   justify-content: space-between;
 }
 
-.main_movie {
+img {
   margin: 20px 0 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
 }

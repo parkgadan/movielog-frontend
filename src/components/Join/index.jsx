@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-import Header from "../Header";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 
 function Join() {
   const idInputRef = useRef();
   const pwInputRef = useRef();
 
-  const joinUrl = "/user/account/signup"; // axios Url
   const [joinInput, setJoinInput] = useState({
     userId: "",
     pw: "",
@@ -31,7 +29,7 @@ function Join() {
   const submitJoin = () => {
     axios
       .post(
-        joinUrl(),
+        "/user/account/signup",
         {
           userId: joinInput.userId,
           password: joinInput.pw,
@@ -40,18 +38,23 @@ function Join() {
         },
         {
           headers: {
-            "Content-type": "applicaton/json",
+            "Content-type": "application/json",
           },
         }
       )
       .then((response) => {
-        console.log(response.data);
+        if (response.data.code === 200) {
+          console.log(response.data);
+        } else if (response.data.code === 400) {
+          console.log(response.data);
+        } else if (response.data.code === 500) {
+          console.log(response.data);
+        }
       });
   };
 
   return (
     <>
-      <Header />
       <section>
         <form onSubmit={submitJoin}>
           <input
@@ -104,7 +107,7 @@ function Join() {
           </div>
         </form>
         <div>
-          이미 가입 하셨나요?<a href="#login">로그인</a>
+          이미 가입 하셨나요?<a href="/user/login">로그인</a>
         </div>
       </section>
     </>

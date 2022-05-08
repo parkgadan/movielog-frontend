@@ -1,29 +1,27 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 import "./index.css";
 
 function Header() {
   return (
-    <header>
-      <nav className="navbar">
-        <div className="navbar_logo">MovieLog</div>
-        <ul className="navbar_menu">
-          <li>
-            <a href="#movie">영화</a>
+    <>
+      <header>
+        <nav className="navbar">
+          <Link className="navbar_logo" to="/movie">
+            MovieLog
+          </Link>
+          <li className="navbar_menu">
+            <Link to="/movie">영화</Link>
+            <Link to="/review/posts">리뷰</Link>
+            <Link to="/my">MY</Link>
           </li>
-          <li>
-            <a href="#review">리뷰</a>
-          </li>
-          <li>
-            <a href="#my">MY</a>
-          </li>
-        </ul>
-        <ul>
           <li className="login">
-            <a href="#login">로그인</a>
+            <Link to="/user/login">로그인</Link>
           </li>
-        </ul>
-      </nav>
-    </header>
+        </nav>
+      </header>
+      <Outlet />
+    </>
   );
 }
 
