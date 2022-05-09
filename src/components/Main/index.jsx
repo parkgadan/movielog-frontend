@@ -5,11 +5,11 @@ import "./index.css";
 
 function Main() {
   const [movieData, setMovieData] = useState([]);
-  const dataUrl = "/data/data1.json";
+  const dataUrl = "/data/data.json";
 
   useEffect(() => {
     axios.get(dataUrl).then((response) => {
-      setMovieData(response.data.movie);
+      setMovieData(response.data.data);
     });
   }, []);
 
@@ -17,8 +17,8 @@ function Main() {
     <>
       <main className="main">
         <ul>
-          {movieData.map((movie, index) => (
-            <Link key={index} to={`/movie/${index}`}>
+          {movieData.map((movie) => (
+            <Link key={movie.no} to={`/movie/${movie.no}`}>
               <img src={movie.image} alt=""></img>
               <div>{movie.title.replace(/[</b>]/gi, "")}</div>
               <div>{movie.subtitle.replace(/[</b>]/gi, "")}</div>
