@@ -21,5 +21,9 @@ a {
 }
 
 a:hover {
-  color: rgb(0, 93, 223);
+  color: rgb(54, 141, 210);
+}
+
+button {
+  cursor: pointer;
 }
