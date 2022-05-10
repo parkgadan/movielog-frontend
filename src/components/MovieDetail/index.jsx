@@ -5,22 +5,23 @@ import "./index.css";
 
 function MovieDetail() {
   const [movieData, setMovieData] = useState([]);
-  const dataUrl = "/data/data1.json";
+  const dataUrl = "/data/data.json";
+  const params = useParams();
+  const movieIndex = Number(params.no);
+  const movie = movieData.find((movie) => movie.no === movieIndex);
+  console.log(movie);
 
   useEffect(() => {
     axios.get(dataUrl).then((response) => {
-      setMovieData(response.data.movie);
+      setMovieData(response.data.data);
     });
   }, []);
-
-  const params = useParams();
-  const movie = movieData[params.movieId];
 
   return (
     <>
       {movie ? (
         <>
-          <div className="movie_detail">
+          <section className="movie_detail">
             <div className="detail_area">
               <div className="detail_box">
                 <img src={movie.image} alt="" />
@@ -39,17 +40,17 @@ function MovieDetail() {
                   </div>
                   <div className="info_rating">
                     <span className="material-icons-outlined">star</span>
-                    {movie.userRating}
+                    {movie.user_rating}
                   </div>
                 </div>
               </div>
               <div className="button_box">
-                <Link to="/review/posts">
+                <Link to="write">
                   <button className="detail_review">
                     리뷰<span className="material-icons-outlined">edit</span>
                   </button>
                 </Link>
-                <Link to={`/movie/order/${movie.id}`}>
+                <Link to={`/movie/order/${movie.no}`}>
                   <button className="detail_order">
                     구매
                     <span className="material-icons-outlined">
@@ -59,10 +60,11 @@ function MovieDetail() {
                 </Link>
               </div>
             </div>
-          </div>
+          </section>
+          <></>
         </>
       ) : (
-        <>X</>
+        <></>
       )}
     </>
   );

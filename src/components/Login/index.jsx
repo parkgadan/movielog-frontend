@@ -59,7 +59,7 @@ function Login() {
 
   return (
     <>
-      <section>
+      <section className="login">
         <form>
           <div className="login_area">
             <div className="loginId">
