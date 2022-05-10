@@ -11,13 +11,23 @@ section.write {
   align-items: center;
 }
 
-.write input,
-.write textarea {
+.no_alert {
   inline-size: 500px;
   padding: 10px 10px 10px 10px;
   font-size: 16px;
   margin: 10px 10px 10px 10px;
   border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  resize: none;
+  outline: none;
+}
+
+.alert {
+  inline-size: 500px;
+  padding: 10px 10px 10px 10px;
+  font-size: 16px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid rgb(54, 141, 210);
   border-radius: 6px;
   resize: none;
   outline: none;

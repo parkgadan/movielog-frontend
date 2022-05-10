@@ -7,20 +7,21 @@ function ReviewPost() {
   const [movieData, setMovieData] = useState([]);
   const [alertMsg, setAlertMsg] = useState("");
   const [write, setWrite] = useState({
-    author: "",
+    movieId: "",
     title: "",
     content: "",
   });
   const navigate = useNavigate();
+  const [alertTitle, setAlertTitle] = useState(false);
+  const [alertContent, setAlertContent] = useState(false);
 
-  const dataUrl = "/data/data.json";
   const params = useParams();
   const movieIndex = Number(params.no);
   const movie = movieData.find((movie) => movie.no === movieIndex);
 
   useEffect(() => {
     // api 호출
-    axios.get(dataUrl).then((response) => {
+    axios.get("/data/data.json").then((response) => {
       setMovieData(response.data.data);
     });
   }, []);
@@ -33,17 +34,31 @@ function ReviewPost() {
   };
 
   const handleSubmit = (event) => {
-    if (write.title.length < 1 || write.content.length < 1) {
+    if (write.title.length < 1 && write.content.length < 1) {
+      setAlertTitle(true);
+      setAlertContent(true);
+      setAlertMsg("1글자 이상 입력해주세요");
+      event.preventDefault();
+    } else if (write.title.length < 1) {
+      setAlertTitle(true);
+      setAlertMsg("1글자 이상 입력해주세요");
+      event.preventDefault();
+    } else if (write.content.length < 1) {
+      setAlertContent(true);
       setAlertMsg("1글자 이상 입력해주세요");
       event.preventDefault();
     } else {
       axios
         .post(
-          // 글 등록시 react ==> spring boot 데이터 보내기
-          "/board",
+          // api 전송
+          "https://9dab5aff-3579-49cc-ba12-859174ed7513.mock.pstmn.io/posts",
           {
-            author: write.author,
-            title: write.title,
+            data: {
+              email: "",
+              movieId: movie.no,
+              title: write.title,
+              content: write.content,
+            },
           },
           {
             headers: {
@@ -55,6 +70,7 @@ function ReviewPost() {
           console.log(response);
         })
         .catch((error) => console.log(error));
+      event.preventDefault();
       navigate("/review/posts");
     }
   };
@@ -67,6 +83,7 @@ function ReviewPost() {
             <input
               type="text"
               value={movie.title.replace(/[</b>]/gi, "")}
+              className="no_alert"
               readOnly
             />
           ) : (
@@ -77,12 +94,14 @@ function ReviewPost() {
             name="title"
             value={write.title}
             onChange={handleOnChange}
+            className={alertTitle ? "alert" : "no_alert"}
             placeholder="제목"
           />
           <textarea
             name="content"
             value={write.content}
             onChange={handleOnChange}
+            className={alertContent ? "alert" : "no_alert"}
             placeholder="내용"
           />
           <div className="write_btn">
