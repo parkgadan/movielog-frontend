@@ -22,7 +22,11 @@ function ReviewPost() {
   useEffect(() => {
     // api 호출
     axios.get("/data/data.json").then((response) => {
-      setMovieData(response.data.data);
+      if (response.data.code === 200) {
+        console.log(response.data);
+      } else if (response.data.code === 400) {
+        console.log(response.data);
+      }
     });
   }, []);
 

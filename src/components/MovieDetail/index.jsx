@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "./index.css";
+import axios from "axios";
 
 function MovieDetail() {
   const [movieData, setMovieData] = useState([]);
-  const dataUrl = "/data/data.json";
   const params = useParams();
   const movieIndex = Number(params.no);
   const movie = movieData.find((movie) => movie.no === movieIndex);
-  console.log(movie);
 
   useEffect(() => {
-    axios.get(dataUrl).then((response) => {
-      setMovieData(response.data.data);
-    });
+    axios
+      .get("https://react-http-46889-default-rtdb.firebaseio.com/data", {
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+      .then((response) => {
+        setMovieData(response);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
