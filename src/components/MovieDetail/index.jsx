@@ -11,13 +11,13 @@ function MovieDetail() {
 
   useEffect(() => {
     axios
-      .get("https://react-http-46889-default-rtdb.firebaseio.com/data", {
+      .get("/data/data.json", {
         headers: {
           "content-type": "application/json",
         },
       })
       .then((response) => {
-        setMovieData(response);
+        setMovieData(response.data.data);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -49,21 +49,19 @@ function MovieDetail() {
                   </div>
                 </div>
               </div>
-              <div className="button_box">
-                <Link to="write">
-                  <button className="detail_review">
-                    리뷰<span className="material-icons-outlined">edit</span>
-                  </button>
-                </Link>
-                <Link to={`/movie/order/${movie.no}`}>
-                  <button className="detail_order">
-                    구매
-                    <span className="material-icons-outlined">
-                      shopping_bag
-                    </span>
-                  </button>
-                </Link>
-              </div>
+            </div>
+            <div className="button_box">
+              <Link to="write">
+                <button className="detail_review">
+                  리뷰<span className="material-icons-outlined">edit</span>
+                </button>
+              </Link>
+              <Link to={`/movie/order/${movie.no}`}>
+                <button className="detail_order">
+                  구매
+                  <span className="material-icons-outlined">shopping_bag</span>
+                </button>
+              </Link>
             </div>
           </section>
           <></>

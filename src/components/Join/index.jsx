@@ -3,12 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import useInput from "../../hooks/useInput";
-import useAxios from "../../hooks/useAxios";
 import "./index.css";
 
-function Join(props) {
+function Join() {
   let formIsValid = false;
-  const { sendRequest: sendFormRequest } = useAxios();
   const [idCheck, setIdCheck] = useState("");
   const navigate = useNavigate();
 
@@ -51,6 +49,15 @@ function Join(props) {
     formIsValid = true;
   }
 
+  useEffect(() => {
+    // 아이디 중복 체크 api 호출
+    axios.get("/join/chk-duplicate").catch((error) => {
+      if (error.response.data === 400) {
+        setIdCheck("중복된 아이디입니다.");
+      }
+    });
+  }, [inputEmail]);
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -64,27 +71,38 @@ function Join(props) {
   };
 
   const handleSendForm = () => {
-    sendFormRequest({
+    axios({
       method: "POST",
-      url: "/join",
+      url: " /join",
       data: {
+        userId: "",
         email: inputEmail,
         password: inputPw,
         nickname: inputNickName,
       },
-    });
-    navigate("/user/login");
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("회원가입 성공");
+          navigate("/login");
+        } else {
+          console.log(response);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log(error.message);
+        }
+        console.log(error.config);
+      });
   };
-
-  useEffect(() => {
-    // 아이디 중복 체크 api 호출
-    axios.get("/join/chk-duplicate").then((response) => {
-      if (response.data.code === 200) {
-      } else if (response.data.code === 400) {
-        setIdCheck("중복된 아이디입니다.");
-      }
-    });
-  }, [inputEmail]);
 
   const emailInputClass = emailInputHasError
     ? "form-control invalid"
@@ -94,11 +112,11 @@ function Join(props) {
     ? "form-control invalid"
     : "form-control";
 
-  const nickNameInputClass = nickNameInputHasError
-    ? "form-control invalid"
-    : "form-control";
-
   const pwReEnterInputClass = pwReEnterInputHasError
+    ? "form-control invalid"
+    : "from-control";
+
+  const nickNameInputClass = nickNameInputHasError
     ? "form-control invalid"
     : "from-control";
 

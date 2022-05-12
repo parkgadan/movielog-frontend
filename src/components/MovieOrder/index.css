@@ -1,4 +1,4 @@
-section.movie_detail {
+section.movie_order {
   inline-size: 1104px;
   block-size: 400px;
   margin: 0 auto;
@@ -11,49 +11,56 @@ section.movie_detail {
   align-items: stretch;
 }
 
-.detail_area {
-  display: flex;
-  justify-content: space-around;
-  inline-size: 100%;
+.movie_order p {
+  margin: 20px 100px 20px 100px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.detail_box {
+.order_box {
   display: flex;
   inline-size: 100%;
   margin: 0 100px 0 100px;
 }
 
-.detail_box img {
+.order_box img {
   margin-right: 24px;
 }
 
-.info_title {
-  font-size: 33px;
+.order_detail_area {
+  display: flex;
+  justify-content: space-around;
+  inline-size: 100%;
+}
+
+.order_detail {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.order_title {
+  font-size: 26px;
   font-weight: 700;
 }
 
-.info_subtitle {
+.order_subtitle {
   font-weight: 500;
 }
 
-.info_rating {
+.order_info {
+  display: flex;
+  flex-flow: column;
+}
+
+.order_button {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
-.info_rating span {
-  color: rgb(54, 141, 210);
-  font-size: 18px;
-}
-
-.button_box {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 100px;
-}
-
-.button_box button {
+.order_button button {
   border: solid transparent;
   background-color: #292a32;
   border-radius: 6px;
@@ -61,24 +68,10 @@ section.movie_detail {
   font-size: 14px;
   padding: 4px 4px 4px 4px;
   margin: 5px;
-}
-
-.button_box {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 }
 
-.button_box .material-icons-outlined {
+.order_button span {
   font-size: 14px;
-}
-
-.detail_review {
-  display: flex;
-  align-items: center;
-}
-
-.detail_order {
-  display: flex;
-  align-items: center;
 }
