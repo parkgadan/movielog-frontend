@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./index.css";
 
-function Header() {
+function Header({ nickname }) {
   return (
     <>
       <header>
@@ -15,9 +15,11 @@ function Header() {
             <Link to="/review/posts">리뷰</Link>
             <Link to="/my">MY</Link>
           </li>
-          <li className="login">
-            <Link to="/user/login">로그인</Link>
-          </li>
+          {nickname ? (<div>{nickname}</div>) : (
+            <li className="login">
+              <Link to="/user/login">로그인</Link>
+            </li>
+          )}
         </nav>
       </header>
       <Outlet />
