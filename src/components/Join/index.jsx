@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import useAxios from "../../hooks/useAxios";
 import useInput from "../../hooks/useInput";
 import "./index.css";
 
 function Join() {
   let formIsValid = false;
+  const { sendRequest: sendFormRequest } = useAxios();
   const [idCheck, setIdCheck] = useState("");
   const navigate = useNavigate();
 
@@ -71,54 +73,31 @@ function Join() {
   };
 
   const handleSendForm = () => {
-    axios({
+    sendFormRequest({
       method: "POST",
-      url: " /join",
+      url: "/join",
       data: {
-        userId: "",
         email: inputEmail,
         password: inputPw,
         nickname: inputNickName,
       },
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("회원가입 성공");
-          navigate("/login");
-        } else {
-          console.log(response);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error.message);
-        }
-        console.log(error.config);
-      });
+    }).then((res) => {
+      console.log(res);
+    });
+    navigate("/user/login");
   };
 
-  const emailInputClass = emailInputHasError
-    ? "form-control invalid"
-    : "form-control";
+  const emailInputClass = `form-control ${emailInputHasError ? "invalid" : ""}`;
 
-  const pwInputClass = pwInputHasError
-    ? "form-control invalid"
-    : "form-control";
+  const pwInputClass = `form-control ${pwInputHasError ? "invalid" : ""}`;
 
-  const pwReEnterInputClass = pwReEnterInputHasError
-    ? "form-control invalid"
-    : "from-control";
+  const pwReEnterInputClass = `form-control ${
+    pwReEnterInputHasError ? "invalid" : ""
+  }`;
 
-  const nickNameInputClass = nickNameInputHasError
-    ? "form-control invalid"
-    : "from-control";
+  const nickNameInputClass = `form-control ${
+    nickNameInputHasError ? "invalid" : ""
+  }`;
 
   return (
     <>

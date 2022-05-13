@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 
-function MovieDetail() {
+function MovieDetail({ nickname }) {
   const [movieData, setMovieData] = useState([]);
   const params = useParams();
   const movieIndex = Number(params.no);
@@ -50,19 +50,25 @@ function MovieDetail() {
                 </div>
               </div>
             </div>
-            <div className="button_box">
-              <Link to="write">
-                <button className="detail_review">
-                  리뷰<span className="material-icons-outlined">edit</span>
-                </button>
-              </Link>
-              <Link to={`/movie/order/${movie.no}`}>
-                <button className="detail_order">
-                  구매
-                  <span className="material-icons-outlined">shopping_bag</span>
-                </button>
-              </Link>
-            </div>
+            {nickname ? (
+              <div className="button_box">
+                <Link to="write">
+                  <button className="detail_review">
+                    리뷰<span className="material-icons-outlined">edit</span>
+                  </button>
+                </Link>
+                <Link to={`/movie/order/${movie.no}`}>
+                  <button className="detail_order">
+                    구매
+                    <span className="material-icons-outlined">
+                      shopping_bag
+                    </span>
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )}
           </section>
           <></>
         </>

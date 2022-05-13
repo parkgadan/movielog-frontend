@@ -12,25 +12,20 @@ section.movie_order {
 }
 
 .movie_order p {
-  margin: 20px 100px 20px 100px;
+  margin: 20px 100px 30px 100px;
   font-size: 20px;
   font-weight: 700;
 }
 
 .order_box {
   display: flex;
-  inline-size: 100%;
   margin: 0 100px 0 100px;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .order_box img {
   margin-right: 24px;
-}
-
-.order_detail_area {
-  display: flex;
-  justify-content: space-around;
-  inline-size: 100%;
 }
 
 .order_detail {
@@ -39,18 +34,24 @@ section.movie_order {
   align-items: center;
 }
 
-.order_title {
-  font-size: 26px;
-  font-weight: 700;
+.order_detail span {
+  color: #999999;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 
-.order_subtitle {
+.order_title {
+  font-size: 18px;
   font-weight: 500;
 }
 
-.order_info {
-  display: flex;
-  flex-flow: column;
+.order_subtitle {
+  font-size: 14px;
+}
+
+.order_price {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .order_button {
@@ -65,13 +66,13 @@ section.movie_order {
   background-color: #292a32;
   border-radius: 6px;
   color: #ffffff;
-  font-size: 14px;
-  padding: 4px 4px 4px 4px;
+  font-size: 16px;
+  padding: 4px 10px 4px 10px;
   margin: 5px;
   display: flex;
   align-items: center;
 }
 
 .order_button span {
-  font-size: 14px;
+  font-size: 16px;
 }

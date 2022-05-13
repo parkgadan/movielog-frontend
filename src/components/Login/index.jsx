@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import api from "../../api";
+
+import { useNavigate, Link } from "react-router-dom";
 
 import "./index.css";
 
-function Login() {
+function Login({ setNickname }) {
   const [loginError, setLoginError] = useState("");
   const emailInputRef = useRef();
   const pwInputRef = useRef();
@@ -15,37 +16,14 @@ function Login() {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = pwInputRef.current.value;
 
-    axios({
-      method: "POST",
-      url: " /login",
-      data: {
-        email: enteredEmail,
-        password: enteredPassword,
-      },
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("로그인 성공");
-          navigate("/movie");
-        } else {
-          console.log(response);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-        } else if (error.response.status === 400) {
-          setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error.message);
-        }
-        console.log(error.config);
-      });
+    api.postLogin(enteredEmail, enteredPassword, ({ nickname, error }) => {
+      console.log(nickname, error);
+      if (error) {
+        setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
+      }
+      setNickname(nickname);
+      navigate("/movie");
+    });
   };
 
   return (
@@ -82,7 +60,7 @@ function Login() {
           </div>
         </form>
         <div className="loginBtn">
-          <a href="/user/account/signup">회원가입 </a>
+          <Link to="/user/account/signup">회원가입</Link>
         </div>
       </section>
     </>

@@ -30,26 +30,22 @@ function MovieOrder() {
             <p>주문정보</p>
             <div className="order_box">
               <img src={movie.image} alt="" />
-              <div className="order_detail_area">
-                <div className="order_detail">
-                  영화 제목
-                  <div className="order_title">
-                    {movie.title.replace(/[</b>]/gi, "")}
-                  </div>
-                  <div className="order_subtitle">
-                    {movie.subtitle.replace(/[</b>]/gi, "")}
-                  </div>
+              <div className="order_detail">
+                <span>영화 제목</span>
+                <div className="order_title">
+                  {movie.title.replace(/[</b>]/gi, "")}
                 </div>
-                <div className="order_info">
-                  가격
-                  <div className="order_money">{movie.price}</div>
+                <div className="order_subtitle">
+                  {movie.subtitle.replace(/[</b>]/gi, "")}
                 </div>
+              </div>
+              <div className="order_detail">
+                <span>가격</span>
+                <div className="order_price">{movie.price}원</div>
               </div>
             </div>
             <div className="order_button">
-              <button>
-                결제<span class="material-icons-outlined">payments</span>
-              </button>
+              <button>결제</button>
             </div>
           </section>
           <></>
