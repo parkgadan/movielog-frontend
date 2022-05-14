@@ -14,13 +14,10 @@ section.movie_detail {
 .detail_area {
   display: flex;
   justify-content: space-around;
-  inline-size: 100%;
 }
 
 .detail_box {
   display: flex;
-  inline-size: 100%;
-  margin: 0 100px 0 100px;
 }
 
 .detail_box img {
@@ -46,14 +43,11 @@ section.movie_detail {
   font-size: 18px;
 }
 
-.button_box {
+.detail_box {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 100px;
 }
 
-.button_box button {
+.detail_area button {
   border: solid transparent;
   background-color: #292a32;
   border-radius: 6px;
@@ -65,8 +59,7 @@ section.movie_detail {
 
 .button_box {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .button_box .material-icons-outlined {

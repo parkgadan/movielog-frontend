@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "./index.css";
-import axios from "axios";
 
-function MovieDetail({ nickname }) {
+function MovieDetail() {
   const [movieData, setMovieData] = useState([]);
+  const dataUrl = "/data/data.json";
   const params = useParams();
   const movieIndex = Number(params.no);
   const movie = movieData.find((movie) => movie.no === movieIndex);
+  console.log(movie);
 
   useEffect(() => {
-    axios
-      .get("/data/data.json", {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((response) => {
-        setMovieData(response.data.data);
-      })
-      .catch((error) => console.log(error));
+    axios.get(dataUrl).then((response) => {
+      setMovieData(response.data.data);
+    });
   }, []);
 
   return (
@@ -49,8 +44,6 @@ function MovieDetail({ nickname }) {
                   </div>
                 </div>
               </div>
-            </div>
-            {nickname ? (
               <div className="button_box">
                 <Link to="write">
                   <button className="detail_review">
@@ -66,9 +59,7 @@ function MovieDetail({ nickname }) {
                   </button>
                 </Link>
               </div>
-            ) : (
-              <></>
-            )}
+            </div>
           </section>
           <></>
         </>
