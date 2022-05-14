@@ -22,6 +22,8 @@ function MovieOrder() {
       .catch((error) => console.log(error));
   }, []);
 
+  const handleOrder = () => {};
+
   return (
     <>
       {movie ? (
@@ -45,7 +47,7 @@ function MovieOrder() {
               </div>
             </div>
             <div className="order_button">
-              <button>결제</button>
+              <button onClick={handleOrder}>결제</button>
             </div>
           </section>
           <></>

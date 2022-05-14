@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 import "./index.css";
 
-function Login({ setNickname }) {
+function Login({ setNickname, setUserId }) {
   const [loginError, setLoginError] = useState("");
   const emailInputRef = useRef();
   const pwInputRef = useRef();
@@ -16,14 +16,19 @@ function Login({ setNickname }) {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = pwInputRef.current.value;
 
-    api.postLogin(enteredEmail, enteredPassword, ({ nickname, error }) => {
-      console.log(nickname, error);
-      if (error) {
-        setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
+    api.postLogin(
+      enteredEmail,
+      enteredPassword,
+      ({ nickname, userId, error }) => {
+        console.log(nickname, userId, error);
+        if (error) {
+          setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
+        }
+        setNickname(nickname);
+        setUserId(userId);
+        navigate("/movie");
       }
-      setNickname(nickname);
-      navigate("/movie");
-    });
+    );
   };
 
   return (

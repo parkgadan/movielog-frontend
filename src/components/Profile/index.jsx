@@ -1,52 +1,63 @@
-import React from "react";
-import Header from "../Header";
+import React, { useState } from "react";
+import "./index.css";
+import useAxios from "../../hooks/useAxios";
 
-function Profile() {
+const Profile = (user) => {
+  const [changeUser, setChangeUser] = useState({
+    userId: user.userId,
+    nickname: user.nickname,
+  });
+  const { sendRequest: sendFormRequest } = useAxios();
+
+  const onChangeNickname = (event) => {
+    setChangeUser({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleChange = () => {
+    sendFormRequest({
+      method: "POST",
+      url: `/user/${user.userId}`,
+      data: {
+        userId: changeUser.userId,
+        nickname: changeUser.nickname,
+      },
+    });
+  };
+
   return (
     <>
-      <Header />
-      <section>
+      <section className="profile">
         <form>
-          <div id="loginId" className="login_form">
-            <h3>아이디</h3>
+          <div className="profile_box">
+            <label htmlFor="inputUserId">아이디</label>
             <input
               type="text"
-              name="id"
-              id="id"
-              className="loginBtn_id"
-              required
+              value={changeUser.userId}
+              id="inputUserId"
+              readOnly
             />
           </div>
-          <div id="loginPw" className="login_form">
-            <h3>이메일</h3>
+          <div className="profile_box">
+            <label htmlFor="inputNickname">닉네임</label>
             <input
-              type="password"
-              name="pw"
-              id="pw"
-              className="loginBtn_pw"
-              required
+              type="text"
+              id="inputNickname"
+              value={changeUser.nickname}
+              onChange={onChangeNickname}
             />
           </div>
-          <div id="loginPw" className="login_form">
-            <h3>닉네임</h3>
-            <input
-              type="password"
-              name="pw"
-              id="pw"
-              className="loginBtn_pw"
-              required
-            />
+          <div className="joinBtn_area">
+            <button>탈퇴</button>
+            <button type="submit" onClick={handleChange}>
+              수정
+            </button>
           </div>
-          <button type="submit" id="loginBtn_login" className="login_btns">
-            수정
-          </button>
-          <button type="submit" id="loginBtn_join" className="login_btns">
-            탈퇴
-          </button>
         </form>
       </section>
     </>
   );
-}
+};
 
 export default Profile;
