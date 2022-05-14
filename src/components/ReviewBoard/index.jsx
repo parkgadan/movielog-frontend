@@ -3,7 +3,9 @@ import React from "react";
 function ReviewBoard() {
   return (
     <>
-      <section>리뷰</section>
+      <section className="review_board">
+        <div className="review_list"></div>
+      </section>
     </>
   );
 }
