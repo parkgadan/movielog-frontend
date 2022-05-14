@@ -1,7 +1,6 @@
-import axios from "axios";
-
+import api from "./instance";
 function getMovie(movie_image, movie_title, movie_date, director, callback) {
-  axios
+  api
     .get("/movie", {
       movie_image,
       movie_title,

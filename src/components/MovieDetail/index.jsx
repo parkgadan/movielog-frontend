@@ -10,16 +10,15 @@ function MovieDetail({ nickname }) {
   const movie = movieData.find((movie) => movie.no === movieIndex);
 
   useEffect(() => {
-    axios
-      .get("/data/data.json", {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((response) => {
-        setMovieData(response.data.data);
-      })
-      .catch((error) => console.log(error));
+    axios({
+      method: "GET",
+      url: "https://4f224638-023e-470d-9712-7d4a643f8966.mock.pstmn.io/movie",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then((response) => {
+      setMovieData(response.data.data);
+    });
   }, []);
 
   return (

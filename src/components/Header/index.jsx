@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./index.css";
 
 function Header({ nickname, userId }) {
-  const [loginBtn, setLoginBtn] = useState(false);
-
   return (
     <>
       <header>
@@ -16,7 +14,7 @@ function Header({ nickname, userId }) {
             <Link to="/movie">영화</Link>
             <Link to="/review/posts">리뷰</Link>
             {nickname ? (
-              <Link to="/my" userId={userId}>
+              <Link to="/my/order" userId={userId}>
                 MY
               </Link>
             ) : (
@@ -26,7 +24,7 @@ function Header({ nickname, userId }) {
           {nickname ? (
             <>
               <li className="login">
-                로그아웃
+                <a href="/movie">로그아웃</a>
                 <Link to="/user/" userId={userId}>
                   {nickname}님
                 </Link>

@@ -9,6 +9,8 @@ import MovieOrder from "./components/MovieOrder";
 import Login from "./components/Login";
 import Join from "./components/Join";
 import My from "./components/My";
+import MyOrder from "./components/MyOrder";
+import MyReview from "./components/MyReview";
 import ReviewBoard from "./components/ReviewBoard";
 import Profile from "./components/Profile";
 
@@ -36,7 +38,10 @@ function App() {
           path="user/login"
           element={<Login setNickname={setNickname} setUserId={setUserId} />}
         />
-        <Route path="my" element={<My />} />
+        <Route path="my" element={<My />}>
+          <Route path="order" element={<MyOrder />} />
+          <Route path="review" element={<MyReview />} />
+        </Route>
         <Route path="review/posts" element={<ReviewBoard />} />
         <Route path="join" element={<Join />} />
       </Route>
