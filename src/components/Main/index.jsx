@@ -5,12 +5,10 @@ import "./index.css";
 
 function Main() {
   const [movieData, setMovieData] = useState([]);
+  const dataUrl = "/data/data.json";
 
   useEffect(() => {
-    axios({
-      method: "GET",
-      url: "/data/data.json",
-    }).then((response) => {
+    axios.get(dataUrl).then((response) => {
       setMovieData(response.data.data);
     });
   }, []);

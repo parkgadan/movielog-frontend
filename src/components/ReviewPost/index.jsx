@@ -20,6 +20,7 @@ function ReviewPost() {
   const movie = movieData.find((movie) => movie.no === movieIndex);
 
   useEffect(() => {
+    // api 호출
     axios.get("/data/data.json").then((response) => {
       setMovieData(response.data.data);
     });
@@ -50,7 +51,7 @@ function ReviewPost() {
       axios
         .post(
           // api 전송
-          "/review/posts",
+          "https://9dab5aff-3579-49cc-ba12-859174ed7513.mock.pstmn.io/posts",
           {
             data: {
               email: "",
@@ -66,9 +67,7 @@ function ReviewPost() {
           }
         )
         .then((response) => {
-          if (response.data.code === 200) {
-            console.log(response);
-          }
+          console.log(response);
         })
         .catch((error) => console.log(error));
       event.preventDefault();

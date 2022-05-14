@@ -33,10 +33,6 @@ header {
   font-weight: 700;
 }
 
-.login a {
-  margin-left: 15px;
-}
-
 .navbar_menu a,
 .login a {
   position: relative;
