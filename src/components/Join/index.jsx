@@ -7,7 +7,6 @@ import useInput from "../../hooks/useInput";
 import "./index.css";
 
 function Join() {
-  let formIsValid = false;
   const { sendRequest: sendFormRequest } = useAxios();
   const [idCheck, setIdCheck] = useState("");
   const navigate = useNavigate();
@@ -47,9 +46,8 @@ function Join() {
     reset: resetNickNameInput,
   } = useInput((value) => value.trim() !== "");
 
-  if (inputEmailIsValid && inputPwIsValid && inputNickNameIsValid) {
-    formIsValid = true;
-  }
+  const formIsValid =
+    inputEmailIsValid && inputPwIsValid && inputNickNameIsValid;
 
   useEffect(() => {
     // 아이디 중복 체크 api 호출
@@ -82,9 +80,8 @@ function Join() {
         nickname: inputNickName,
       },
     }).then((res) => {
-      console.log(res);
+      navigate("/user/login");
     });
-    navigate("/user/login");
   };
 
   const emailInputClass = `form-control ${emailInputHasError ? "invalid" : ""}`;

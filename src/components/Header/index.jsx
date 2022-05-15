@@ -12,7 +12,7 @@ function Header({ nickname, userId }) {
           </Link>
           <li className="navbar_menu">
             <Link to="/movie">영화</Link>
-            <Link to="/review/posts">리뷰</Link>
+            <Link to="/review">리뷰</Link>
             {nickname ? (
               <Link to="/my/order" userId={userId}>
                 MY

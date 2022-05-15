@@ -13,9 +13,9 @@ section.write {
 
 .no_alert {
   inline-size: 500px;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   font-size: 16px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   border: 1px solid #e3e3e3;
   border-radius: 6px;
   resize: none;
@@ -24,9 +24,9 @@ section.write {
 
 .alert {
   inline-size: 500px;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   font-size: 16px;
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   border: 1px solid rgb(54, 141, 210);
   border-radius: 6px;
   resize: none;
@@ -43,7 +43,7 @@ section.write {
   border-radius: 6px;
   color: #ffffff;
   font-size: 14px;
-  padding: 4px 10px 4px 10px;
+  padding: 4px 10px;
   margin: 5px;
 }
 

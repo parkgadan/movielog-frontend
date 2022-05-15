@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./index.css";
-import MyOrder from "../MyOrder";
 
 function My(userId) {
   return (
@@ -17,7 +16,6 @@ function My(userId) {
             </li>
           </ul>
         </div>
-        <div className="my_area"></div>
         <Outlet />
       </section>
     </>

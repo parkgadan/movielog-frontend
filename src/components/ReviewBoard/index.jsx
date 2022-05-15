@@ -8,7 +8,7 @@ function ReviewBoard() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://8c6fc657-d010-4845-8a73-b6ce8db36833.mock.pstmn.io/review/posts",
+      url: "https://jsonplaceholder.typicode.com/posts",
       headers: {
         "Content-type": "application/json",
       },

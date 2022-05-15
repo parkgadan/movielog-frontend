@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./index.css";
 
-function ReviewPost() {
+function ReviewWrite() {
   const [movieData, setMovieData] = useState([]);
   const [alertMsg, setAlertMsg] = useState("");
   const [write, setWrite] = useState({
@@ -20,7 +20,13 @@ function ReviewPost() {
   const movie = movieData.find((movie) => movie.no === movieIndex);
 
   useEffect(() => {
-    axios.get("/data/data.json").then((response) => {
+    axios({
+      method: "GET",
+      url: "https://4f224638-023e-470d-9712-7d4a643f8966.mock.pstmn.io/movie",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then((response) => {
       setMovieData(response.data.data);
     });
   }, []);
@@ -118,4 +124,4 @@ function ReviewPost() {
   );
 }
 
-export default ReviewPost;
+export default ReviewWrite;

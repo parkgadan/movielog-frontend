@@ -12,7 +12,7 @@ const mockApi = {
     return new Promise(
       (resolve) =>
         setTimeout(() => {
-          callback({ nickname: "userNickname", userId: "userIdTest" });
+          callback({ nickname: "userNickname", userId: "2" });
           resolve();
         }),
       1000

@@ -10,11 +10,6 @@ ul.my_menu {
 }
 
 .my_menu li {
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   font-weight: 500;
-}
-
-.my_menu a:active,
-.my_menu a:focus {
-  color: rgb(54, 141, 210);
 }

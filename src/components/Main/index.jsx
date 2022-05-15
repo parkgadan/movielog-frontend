@@ -9,7 +9,7 @@ function Main() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://4f224638-023e-470d-9712-7d4a643f8966.mock.pstmn.io/movie",
+      url: "../../data/data.json",
       headers: {
         "Content-type": "application/json",
       },
