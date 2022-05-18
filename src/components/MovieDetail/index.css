@@ -20,7 +20,7 @@ section.movie_detail {
 .detail_box {
   display: flex;
   inline-size: 100%;
-  margin: 0 100px 0 100px;
+  margin: 0 100px;
 }
 
 .detail_box img {
@@ -59,7 +59,7 @@ section.movie_detail {
   border-radius: 6px;
   color: #ffffff;
   font-size: 14px;
-  padding: 4px 4px 4px 4px;
+  padding: 4px;
   margin: 5px;
 }
 

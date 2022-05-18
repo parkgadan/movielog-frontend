@@ -15,11 +15,11 @@
 }
 
 .main li {
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
 }
 
 .main img {
-  margin: 20px 0 20px;
+  margin: 20px 0;
   display: flex;
   flex-flow: column;
   align-items: center;

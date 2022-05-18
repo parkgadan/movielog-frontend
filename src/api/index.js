@@ -4,7 +4,7 @@ import { getMovie } from "./movieInfo";
 const useMock = true;
 const api = {
   postLogin,
-  getMovie,
+  // getMovie,
 };
 
 const mockApi = {
@@ -12,7 +12,7 @@ const mockApi = {
     return new Promise(
       (resolve) =>
         setTimeout(() => {
-          callback({ nickname: "userNickname", userId: "userIdTest" });
+          callback({ nickname: "userNickname", userId: "2" });
           resolve();
         }),
       1000
@@ -23,7 +23,7 @@ const mockApi = {
     setTimeout(
       () =>
         callback({
-          data: [
+          movie: [
             {
               no: 1,
               title: "해리 포터와 혼혈 왕자",

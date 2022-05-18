@@ -1,16 +1,18 @@
-section.movie_order_page {
+section.order_info {
   inline-size: 1104px;
   display: flex;
   flex-flow: column;
-  margin: 100px auto;
+  margin: 10px auto;
+  align-items: flex-start;
+  padding: 10px;
 }
 
-.movie_order_page p {
+.order_info p {
   font-size: 20px;
   margin-left: 10px;
 }
 
-div.movie_order {
+div.order_info_area {
   inline-size: 100%;
   block-size: 400px;
   margin: 20px auto;
@@ -20,70 +22,73 @@ div.movie_order {
   flex-flow: column;
   justify-content: center;
   align-items: stretch;
+  padding: 20px 0;
 }
 
-.movie_order p {
+.order_info_area p {
   margin: 20px 100px 30px;
   font-size: 20px;
   font-weight: 700;
 }
 
-.order_box {
+.order_info_box {
   display: flex;
   margin: 0 100px;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.order_box img {
+.order_info_box img {
   margin-right: 24px;
 }
 
-.order_detail {
+.order_info {
   display: flex;
   flex-flow: column;
   align-items: center;
 }
 
-.order_detail span {
+.order_info_box span {
   color: #999999;
   font-weight: 500;
   margin-bottom: 20px;
 }
 
-.order_title {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.order_subtitle {
+.order_info_subtitle {
   font-size: 14px;
 }
 
-.order_price {
+.order_info_detail {
   font-size: 18px;
   font-weight: 500;
 }
 
-.order_button {
+.order_purchase_info {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  flex-flow: column;
+  align-items: flex-start;
+  margin: 30px 100px;
+  padding-top: 20px;
+  border-top: 1px solid #e3e3e3;
+}
+
+.order_info_date {
+  display: flex;
+  margin: 30px 100px;
+}
+
+.order_info_date span {
+  margin: 0 10px;
+}
+
+.order_info_title {
+  font-weight: 600;
+}
+
+.order_purchase_info_detail {
   margin-top: 10px;
 }
 
-.order_button button {
-  border: solid transparent;
-  background-color: #292a32;
-  border-radius: 6px;
-  color: #ffffff;
-  font-size: 16px;
-  padding: 4px 10px;
-  margin: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.order_button span {
-  font-size: 16px;
+.order_purchase_info_detail span:first-child {
+  margin-right: 20px;
 }

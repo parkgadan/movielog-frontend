@@ -1,25 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import "./index.css";
 
 function My(userId) {
   return (
     <>
-      <section className="profile">
-        <div className="profile_menu">
-          <ul>
+      <section className="my">
+        <div className="my_area">
+          <ul className="my_menu">
             <li>
-              <Link to={`/movie/myorder/${userId}`} className="profile_link">
-                구매내역
-              </Link>
+              <Link to="/my/order">구매내역</Link>
             </li>
             <li>
-              <Link to={`/review/posts/${userId}`} className="profile_link">
-                내 리뷰
-              </Link>
+              <Link to="/my/review">내 리뷰</Link>
             </li>
           </ul>
         </div>
-        <div className="profile_area"></div>
+        <Outlet />
       </section>
     </>
   );

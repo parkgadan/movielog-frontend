@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./index.css";
 import useAxios from "../../hooks/useAxios";
+import axios from "axios";
 
 const Profile = (user) => {
   const [changeUser, setChangeUser] = useState({
-    userId: user.userId,
+    userId: user.token,
     nickname: user.nickname,
   });
   const { sendRequest: sendFormRequest } = useAxios();
@@ -15,12 +16,24 @@ const Profile = (user) => {
     });
   };
 
+  const handleDelete = () => {
+    axios({
+      method: "DELETE",
+      url: "/api/user",
+      data: {
+        userId: changeUser.userId,
+      },
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  };
+
   const handleChange = () => {
     sendFormRequest({
       method: "POST",
-      url: `/user/${user.userId}`,
+      url: "/api/user/me",
       data: {
-        userId: changeUser.userId,
         nickname: changeUser.nickname,
       },
     });
@@ -49,7 +62,7 @@ const Profile = (user) => {
             />
           </div>
           <div className="joinBtn_area">
-            <button>탈퇴</button>
+            <button onClick={handleDelete}>탈퇴</button>
             <button type="submit" onClick={handleChange}>
               수정
             </button>

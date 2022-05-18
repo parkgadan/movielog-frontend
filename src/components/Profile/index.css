@@ -27,8 +27,8 @@ section.profile {
 
 .profile_box input {
   inline-size: 300px;
-  padding: 10px 10px 10px 10px;
-  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  margin: 10px;
   border: 1px solid #e3e3e3;
   border-radius: 6px;
   outline: none;
@@ -41,8 +41,8 @@ section.profile {
   color: #ffffff;
   font-size: 14px;
   margin: 5px;
-  padding: 5px 10px 5px 10px;
-  margin: 10px 10px 10px 10px;
+  padding: 5px 10px;
+  margin: 10px;
   font-weight: 500;
   margin-top: 30px;
   text-align: center;
