@@ -18,7 +18,7 @@ function Join() {
     handleValueChange: handleEmailChange,
     handleInputBlur: handleEmailBlur,
     reset: resetEmailInput,
-  } = useInput((value) => value.includes("@" && "."));
+  } = useInput((value) => value.includes("@" && ".") && value.trim() !== "");
 
   const {
     value: inputPw,
@@ -166,7 +166,7 @@ function Join() {
           </div>
         </form>
         <div className="login_guide">
-          이미 가입 하셨나요? <Link href="/login">로그인</Link>
+          이미 가입 하셨나요? <Link to="/login">로그인</Link>
         </div>
       </section>
     </>

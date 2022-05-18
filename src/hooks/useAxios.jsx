@@ -14,9 +14,7 @@ function useAxios() {
       });
       const data = await response;
       applyData(data);
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   }, []);
 
   return { sendRequest };

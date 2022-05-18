@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./index.css";
 
-function OrderInfo() {
+function OrderInfo({ token }) {
   const [movieData, setMovieData] = useState([]);
   const params = useParams();
   const orderId = Number(params.no);
@@ -13,16 +13,14 @@ function OrderInfo() {
     axios({
       method: "GET",
       url: `/api/my/order/${orderId}`,
-      data: {
-        orderId: orderId,
-      },
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     }).then((response) => {
       setMovieData(response.data);
     });
-  }, [orderId]);
+  }, [orderId, token]);
 
   return (
     <>

@@ -15,11 +15,12 @@ function MovieOrder({ token }) {
       url: `/api/order/${movieId}`,
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     }).then((response) => {
       setMovieData(response.data);
     });
-  }, [movieId]);
+  }, [movieId, token]);
 
   const handleOrder = () => {
     axios({
@@ -30,6 +31,7 @@ function MovieOrder({ token }) {
       },
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     });
   };

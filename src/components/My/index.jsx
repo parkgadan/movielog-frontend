@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./index.css";
 
-function My(userId) {
+function My() {
   return (
     <>
       <section className="my">

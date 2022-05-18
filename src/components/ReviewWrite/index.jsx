@@ -1,18 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./index.css";
 
-function ReviewWrite({ movieId, movieTitle, token }) {
+function ReviewWrite({ token }) {
   const [alertMsg, setAlertMsg] = useState("");
   const [write, setWrite] = useState({
-    movieId: "",
     title: "",
     content: "",
   });
-  const navigate = useNavigate();
+  const [getMovieTitle, setGetMovieTitle] = useState("");
   const [alertTitle, setAlertTitle] = useState(false);
   const [alertContent, setAlertContent] = useState(false);
+
+  const titleInputRef = useRef();
+  const contentInputRef = useRef();
+
+  const params = useParams();
+  const movieId = Number(params.no);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `/api/review/write/${movieId}`,
+      headers: {
+        "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
+      },
+    }).then((response) => {
+      setGetMovieTitle(response.data.title);
+    });
+  }, []);
 
   const handleOnChange = (e) => {
     setWrite({
@@ -22,6 +41,9 @@ function ReviewWrite({ movieId, movieTitle, token }) {
   };
 
   const handleWrite = (event) => {
+    const enteredTitle = titleInputRef.current.value;
+    const enteredContent = contentInputRef.current.value;
+
     if (write.title.length < 1 && write.content.length < 1) {
       setAlertTitle(true);
       setAlertContent(true);
@@ -36,30 +58,18 @@ function ReviewWrite({ movieId, movieTitle, token }) {
       setAlertMsg("1글자 이상 입력해주세요");
       event.preventDefault();
     } else {
-      axios
-        .post(
-          // api 전송
-          `/api/review/write/${movieId}`,
-          {
-            data: {
-              movieId: movieId,
-              userId: token,
-              title: write.title,
-              content: write.content,
-            },
-          },
-          {
-            headers: {
-              "content-type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data.code === 200) {
-            console.log(response);
-          }
-        })
-        .catch((error) => console.log(error));
+      axios({
+        method: "POST",
+        url: `/api/review/write/${movieId}`,
+        data: {
+          title: enteredTitle,
+          content: enteredContent,
+        },
+        headers: {
+          "Content-type": "application/json",
+          "X-AUTH-TOKEN": token,
+        },
+      });
       event.preventDefault();
       navigate("/my/review");
     }
@@ -69,11 +79,17 @@ function ReviewWrite({ movieId, movieTitle, token }) {
     <>
       <section className="write">
         <form className="write_form">
-          <input type="text" value={movieTitle} className="no_alert" readOnly />
+          <input
+            type="text"
+            value={getMovieTitle}
+            className="no_alert"
+            readOnly
+          />
           <input
             type="text"
             name="title"
             value={write.title}
+            ref={titleInputRef}
             onChange={handleOnChange}
             className={alertTitle ? "alert" : "no_alert"}
             placeholder="제목"
@@ -81,6 +97,7 @@ function ReviewWrite({ movieId, movieTitle, token }) {
           <textarea
             name="content"
             value={write.content}
+            ref={contentInputRef}
             onChange={handleOnChange}
             className={alertContent ? "alert" : "no_alert"}
             placeholder="내용"

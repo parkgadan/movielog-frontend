@@ -10,14 +10,12 @@ function MyReview({ token }) {
     axios({
       method: "GET",
       url: "/api/my/review",
-      data: {
-        userId: token,
-      },
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     }).then((response) => {
-      setReviewList(response.data.review_list);
+      setReviewList(response.data);
     });
   }, [token]);
 
@@ -25,13 +23,13 @@ function MyReview({ token }) {
     <>
       <section className="my_review">
         <ul>
-          {reviewList.map((list, index) => (
+          {reviewList.map((list) => (
             <>
-              <li key={index}>
+              <li key={list.reviewId}>
                 <ReviewEdit
-                  reviewTitle={list.title}
-                  reviewContent={list.body}
                   reviewId={list.reviewId}
+                  reviewTitle={list.title}
+                  reviewContent={list.content}
                   movieTitle={list.movietitle}
                 />
               </li>

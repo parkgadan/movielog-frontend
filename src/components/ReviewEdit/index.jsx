@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./index.css";
 import axios from "axios";
 
-function ReviewEdit({ reviewId, reviewTitle, reviewContent, movieTitle }) {
+function ReviewEdit({
+  reviewId,
+  reviewTitle,
+  reviewContent,
+  movieTitle,
+  token,
+}) {
   const [userReview, setUserReview] = useState({
-    reviewId: reviewId,
     title: reviewTitle,
     content: reviewContent,
     movie: movieTitle,
   });
   const [isBtnClick, setIsBtnClick] = useState(false);
+  const titleInputRef = useRef();
+  const contentInputRef = useRef();
 
   const onChangeReview = (event) => {
     setUserReview({
@@ -20,30 +27,36 @@ function ReviewEdit({ reviewId, reviewTitle, reviewContent, movieTitle }) {
   const handleDelete = () => {
     axios({
       method: "DELETE",
-      url: `/api/my/review/${userReview.reviewId}`,
+      url: `/api/my/review/${reviewId}`,
       data: {
-        reviewId: userReview.reviewId,
+        reviewId: reviewId,
       },
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     });
+    window.location.reload();
   };
 
   const handleEdit = () => {
     setIsBtnClick(!isBtnClick);
+    const enteredTitle = titleInputRef.current.value;
+    const enteredContent = contentInputRef.current.value;
+
     axios({
       method: "POST",
-      url: `/api/my/review/${userReview.reviewId}`,
+      url: `/api/my/review/${reviewId}`,
       data: {
-        reviewId: userReview.reviewId,
-        title: userReview.title,
-        content: userReview.content,
+        title: enteredTitle,
+        content: enteredContent,
       },
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     });
+    window.location.reload();
   };
 
   return (
@@ -51,11 +64,13 @@ function ReviewEdit({ reviewId, reviewTitle, reviewContent, movieTitle }) {
       {isBtnClick ? (
         <>
           <div className="review_edit_title">
+            <p>{userReview.movie}</p>
             <p>리뷰 제목</p>
             <input
               type="text"
               value={userReview.title}
               onChange={onChangeReview}
+              ref={titleInputRef}
             />
           </div>
           <div className="review_edit_content">
@@ -65,12 +80,14 @@ function ReviewEdit({ reviewId, reviewTitle, reviewContent, movieTitle }) {
               type="text"
               value={userReview.content}
               onChange={onChangeReview}
+              ref={contentInputRef}
             />
           </div>
         </>
       ) : (
         <>
           <div className="review_edit_title">
+            <p>{userReview.movie}</p>
             <p>리뷰 제목</p>
             {userReview.title}
           </div>

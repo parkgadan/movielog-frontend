@@ -27,30 +27,33 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header nickname={nickname} token={token} />
+        <Header nickname={nickname} />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route
             path="/movie/:no"
             element={<MovieDetail nickname={nickname} />}
           />
-          <Route path="/review/write/:no" element={<ReviewWrite />} />
-          <Route path="/order/:no" element={<MovieOrder />} />
+          <Route
+            path="/review/write/:no"
+            element={<ReviewWrite token={token} />}
+          />
+          <Route path="/order/:no" element={<MovieOrder token={token} />} />
           <Route
             path="/user/me"
-            element={<Profile nickname={nickname} token={token} />}
+            element={<Profile token={token} nickname={nickname} />}
           />
+          <Route path="/join" element={<Join />} />
           <Route
-            path="/user/login"
+            path="/login"
             element={<Login setNickname={setNickname} setToken={setToken} />}
           />
-          <Route path="/my" element={<My />}>
+          <Route path="/my" element={<My nickname={nickname} token={token} />}>
             <Route path="order" element={<MyOrder token={token} />} />
             <Route path="order/:no/:no" element={<OrderInfo token={token} />} />
             <Route path="review" element={<MyReview token={token} />} />
           </Route>
           <Route path="/review" element={<ReviewBoard />} />
-          <Route path="/join" element={<Join />} />
         </Routes>
       </BrowserRouter>
     </>
