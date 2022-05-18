@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Join from "./components/Join";
 import My from "./components/My";
 import MyOrder from "./components/MyOrder";
+import OrderInfo from "./components/OrderInfo";
 import MyReview from "./components/MyReview";
 import ReviewBoard from "./components/ReviewBoard";
 import ReviewWrite from "./components/ReviewWrite";
@@ -16,36 +17,43 @@ import Profile from "./components/Profile";
 
 function App() {
   const [nickname, setNickname] = useState("");
-  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     setNickname(localStorage.getItem("nickname"));
-    setUserId(localStorage.getItem("userId"));
+    setToken(localStorage.getItem("token"));
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Header nickname={nickname} userId={userId} />}>
-        <Route path="movie" element={<Main />} />
-        <Route path="movie/:no" element={<MovieDetail nickname={nickname} />} />
-        <Route path="movie/:no/write" element={<ReviewWrite />} />
-        <Route path="movie/order/:no" element={<MovieOrder />} />
-        <Route
-          path="user"
-          element={<Profile nickname={nickname} userId={userId} />}
-        />
-        <Route
-          path="user/login"
-          element={<Login setNickname={setNickname} setUserId={setUserId} />}
-        />
-        <Route path="my" element={<My />}>
-          <Route path="order" element={<MyOrder />} />
-          <Route path="review" element={<MyReview userId={userId} />} />
-        </Route>
-        <Route path="review" element={<ReviewBoard />} />
-        <Route path="join" element={<Join />} />
-      </Route>
-    </Routes>
+    <>
+      <BrowserRouter>
+        <Header nickname={nickname} token={token} />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route
+            path="/movie/:no"
+            element={<MovieDetail nickname={nickname} />}
+          />
+          <Route path="/review/write/:no" element={<ReviewWrite />} />
+          <Route path="/order/:no" element={<MovieOrder />} />
+          <Route
+            path="/user/me"
+            element={<Profile nickname={nickname} token={token} />}
+          />
+          <Route
+            path="/user/login"
+            element={<Login setNickname={setNickname} setToken={setToken} />}
+          />
+          <Route path="/my" element={<My />}>
+            <Route path="order" element={<MyOrder token={token} />} />
+            <Route path="order/:no/:no" element={<OrderInfo token={token} />} />
+            <Route path="review" element={<MyReview token={token} />} />
+          </Route>
+          <Route path="/review" element={<ReviewBoard />} />
+          <Route path="/join" element={<Join />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

@@ -1,42 +1,48 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./index.css";
 
-function MyOrder() {
+function MyOrder({ token }) {
   const [myOrder, setMyOrder] = useState([]);
 
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://4f224638-023e-470d-9712-7d4a643f8966.mock.pstmn.io/my/order",
+      url: "/api/my/order",
+      data: {
+        userId: token,
+      },
       headers: {
         "Content-type": "application/json",
       },
     }).then((response) => {
       setMyOrder(response.data.movie_list);
     });
-  }, []);
+  }, [token]);
 
   return (
     <>
       <section className="my_order_box">
         <div className="order_area">
           {myOrder.map((list) => (
-            <li key={list.movie_title}>
-              <p className="my_order_title">{list.movie_title}</p>
-              <div className="my_order_money">
-                <p>금액</p>
-                {list.movie_money}
-              </div>
-              <div className="my_order_date">
-                <p>구매일자</p>
-                {list.purchase_date}
-              </div>
-              <div className="my_order_status">
-                <p>상태</p>
-                {list.movie_purchase_status}
-              </div>
-            </li>
+            <Link key={list.orderId} to={`/my/order/${list.orderId}`}>
+              <li>
+                <p className="my_order_title">{list.title}</p>
+                <div className="my_order_money">
+                  <p>금액</p>
+                  {list.price}
+                </div>
+                <div className="my_order_date">
+                  <p>구매일자</p>
+                  {list.date}
+                </div>
+                <div className="my_order_status">
+                  <p>상태</p>
+                  {list.status}
+                </div>
+              </li>
+            </Link>
           ))}
         </div>
       </section>

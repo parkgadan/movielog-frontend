@@ -27,7 +27,8 @@ section.review_board {
   padding: 15px 0px 10px;
 }
 
-.board_title {
+.board_title,
+.board_movie {
   border-bottom: 1px solid rgb(229, 229, 229);
   padding: 20px 0;
 }

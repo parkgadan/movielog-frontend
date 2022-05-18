@@ -8,7 +8,7 @@ function ReviewBoard() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://jsonplaceholder.typicode.com/posts",
+      url: "/api/review",
       headers: {
         "Content-type": "application/json",
       },
@@ -21,11 +21,14 @@ function ReviewBoard() {
     <>
       <section className="review_board">
         <ul>
-          {reviewList.map((review) => (
-            <li key={review.id}>
+          {reviewList.map((review, index) => (
+            <li key={index}>
               <div className="board_user">
-                <span>닉네임</span>
-                {review.userId}
+                <p>닉네임</p>
+                {review.nickname}
+              </div>
+              <div className="board_movie">
+                <p>{review.movietitle}</p>
               </div>
               <div className="board_title">
                 <p>리뷰 제목</p>
@@ -33,7 +36,7 @@ function ReviewBoard() {
               </div>
               <div className="board_content">
                 <p>리뷰 내용</p>
-                {review.body}
+                {review.content}
               </div>
             </li>
           ))}

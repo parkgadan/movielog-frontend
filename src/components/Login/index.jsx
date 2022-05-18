@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
-import api from "../../api";
-
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
 import "./index.css";
@@ -16,20 +15,26 @@ function Login({ setNickname, setUserId }) {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = pwInputRef.current.value;
 
-    api.postLogin(
-      enteredEmail,
-      enteredPassword,
-      ({ nickname, userId, error }) => {
-        // console.log(nickname, userId, error);
-        if (error) {
-          setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
-          return;
-        }
-        setNickname(nickname);
-        setUserId(userId);
+    axios({
+      method: "POST",
+      url: "/api/login",
+      data: {
+        email: enteredEmail,
+        password: enteredPassword,
+      },
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        setNickname(response.nickname);
+        setUserId(response.token);
         navigate("/movie");
-      }
-    );
+      })
+      .catch(() => {
+        setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
+        return;
+      });
   };
 
   return (
@@ -66,7 +71,7 @@ function Login({ setNickname, setUserId }) {
           </div>
         </form>
         <div className="loginBtn">
-          <Link to="/user/account/signup">회원가입</Link>
+          <Link to="/join">회원가입</Link>
         </div>
       </section>
     </>

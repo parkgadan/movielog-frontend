@@ -9,40 +9,10 @@ section.my_review {
 }
 
 .my_review li {
-  background-color: rgba(242, 242, 242, 0.5);
+  background-color: rgb(242, 242, 242);
   box-sizing: border-box;
-  padding: 0px 12px;
+  padding: 0px 16px;
   border-radius: 6px;
   overflow: hidden;
   margin: 50px 0px;
-}
-
-.my_review_title p,
-.my_review_content p {
-  color: #999999;
-}
-
-.my_review_title {
-  border-bottom: 1px solid rgb(229, 229, 229);
-  padding: 20px 0;
-}
-
-.my_review_content {
-  padding: 10px 0px 15px;
-}
-
-.my_review_btn {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-}
-
-.my_review_btn button {
-  margin-left: 5px;
-  border: solid transparent;
-  background-color: #e3e3e3;
-  border-radius: 6px;
-  color: #292a32;
-  font-size: 14px;
-  padding: 4px 6px;
 }

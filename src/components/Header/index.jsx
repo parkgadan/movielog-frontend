@@ -7,11 +7,11 @@ function Header({ nickname, userId }) {
     <>
       <header>
         <nav className="navbar">
-          <Link className="navbar_logo" to="/movie">
+          <Link className="navbar_logo" to="/">
             MovieLog
           </Link>
           <li className="navbar_menu">
-            <Link to="/movie">영화</Link>
+            <Link to="/">영화</Link>
             <Link to="/review">리뷰</Link>
             {nickname ? (
               <Link to="/my/order" userId={userId}>
@@ -24,8 +24,7 @@ function Header({ nickname, userId }) {
           {nickname ? (
             <>
               <li className="login">
-                <a href="/movie">로그아웃</a>
-                <Link to="/user/" userId={userId}>
+                <Link to="/user/me" userId={userId}>
                   {nickname}님
                 </Link>
               </li>
@@ -34,7 +33,7 @@ function Header({ nickname, userId }) {
             <>
               <li className="login">
                 <Link to="/join">회원가입</Link>
-                <Link to="/user/login">로그인</Link>
+                <Link to="/login">로그인</Link>
               </li>
             </>
           )}

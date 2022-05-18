@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import useAxios from "../../hooks/useAxios";
 import useInput from "../../hooks/useInput";
@@ -51,7 +51,7 @@ function Join() {
 
   useEffect(() => {
     // 아이디 중복 체크 api 호출
-    axios.get("/join/chk-duplicate").catch((error) => {
+    axios.get("/api/join/chk-duplicate").catch((error) => {
       if (error.response.data === 400) {
         setIdCheck("중복된 아이디입니다.");
       }
@@ -73,14 +73,14 @@ function Join() {
   const handleSendForm = () => {
     sendFormRequest({
       method: "POST",
-      url: "/join",
+      url: "/api/join",
       data: {
         email: inputEmail,
         password: inputPw,
         nickname: inputNickName,
       },
-    }).then((res) => {
-      navigate("/user/login");
+    }).then(() => {
+      navigate("/login");
     });
   };
 
@@ -166,7 +166,7 @@ function Join() {
           </div>
         </form>
         <div className="login_guide">
-          이미 가입 하셨나요? <a href="/user/login">로그인</a>
+          이미 가입 하셨나요? <Link href="/login">로그인</Link>
         </div>
       </section>
     </>

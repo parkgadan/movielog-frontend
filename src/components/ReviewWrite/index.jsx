@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./index.css";
 
-function ReviewWrite() {
-  const [movieData, setMovieData] = useState([]);
+function ReviewWrite({ movieId, movieTitle, token }) {
   const [alertMsg, setAlertMsg] = useState("");
   const [write, setWrite] = useState({
     movieId: "",
@@ -15,22 +14,6 @@ function ReviewWrite() {
   const [alertTitle, setAlertTitle] = useState(false);
   const [alertContent, setAlertContent] = useState(false);
 
-  const params = useParams();
-  const movieIndex = Number(params.no);
-  const movie = movieData.find((movie) => movie.no === movieIndex);
-
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: "https://4f224638-023e-470d-9712-7d4a643f8966.mock.pstmn.io/movie",
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).then((response) => {
-      setMovieData(response.data.data);
-    });
-  }, []);
-
   const handleOnChange = (e) => {
     setWrite({
       ...write,
@@ -38,7 +21,7 @@ function ReviewWrite() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleWrite = (event) => {
     if (write.title.length < 1 && write.content.length < 1) {
       setAlertTitle(true);
       setAlertContent(true);
@@ -56,11 +39,11 @@ function ReviewWrite() {
       axios
         .post(
           // api 전송
-          "/review/posts",
+          `/api/review/write/${movieId}`,
           {
             data: {
-              email: "",
-              movieId: movie.no,
+              movieId: movieId,
+              userId: token,
               title: write.title,
               content: write.content,
             },
@@ -78,7 +61,7 @@ function ReviewWrite() {
         })
         .catch((error) => console.log(error));
       event.preventDefault();
-      navigate("/review/posts");
+      navigate("/my/review");
     }
   };
 
@@ -86,16 +69,7 @@ function ReviewWrite() {
     <>
       <section className="write">
         <form className="write_form">
-          {movie ? (
-            <input
-              type="text"
-              value={movie.title.replace(/[</b>]/gi, "")}
-              className="no_alert"
-              readOnly
-            />
-          ) : (
-            <></>
-          )}
+          <input type="text" value={movieTitle} className="no_alert" readOnly />
           <input
             type="text"
             name="title"
@@ -112,10 +86,10 @@ function ReviewWrite() {
             placeholder="내용"
           />
           <div className="write_btn">
-            <Link to="/review/posts">
+            <Link to="/review">
               <button>목록</button>
             </Link>
-            <button onClick={handleSubmit}>등록</button>
+            <button onClick={handleWrite}>등록</button>
           </div>
           <div className="write_alert">{alertMsg}</div>
         </form>

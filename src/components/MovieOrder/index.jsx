@@ -1,27 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 
-function MovieOrder() {
+function MovieOrder({ token }) {
   const [movieData, setMovieData] = useState([]);
   const params = useParams();
-  const movieIndex = Number(params.no);
-  const movie = movieData.find((movie) => movie.no === movieIndex);
+  const movieId = Number(params.no);
+  const movie = movieData.find((movie) => movie.no === movieId);
 
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://4f224638-023e-470d-9712-7d4a643f8966.mock.pstmn.io/movie",
+      url: `/api/order/${movieId}`,
       headers: {
         "Content-type": "application/json",
       },
     }).then((response) => {
-      setMovieData(response.data.data);
+      setMovieData(response.data);
     });
-  }, []);
+  }, [movieId]);
 
-  const handleOrder = () => {};
+  const handleOrder = () => {
+    axios({
+      method: "POST",
+      url: `/api/order/${movieId}`,
+      data: {
+        movieId: movieId,
+      },
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  };
 
   return (
     <>
@@ -51,7 +62,6 @@ function MovieOrder() {
               </div>
             </div>
           </section>
-          <></>
         </>
       ) : (
         <></>
