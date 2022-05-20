@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 import "./index.css";
 
-function Login({ setNickname, setUserId }) {
+function Login({ setNickname, setToken }) {
   const [loginError, setLoginError] = useState("");
   const emailInputRef = useRef();
   const pwInputRef = useRef();
@@ -27,13 +27,14 @@ function Login({ setNickname, setUserId }) {
       },
     })
       .then((response) => {
-        setNickname(response.nickname);
-        setUserId(response.token);
-        navigate("/movie");
+        setNickname(response.data.nickname);
+        setToken(response.data.token);
+        navigate("/");
       })
-      .catch(() => {
-        setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
-        return;
+      .catch((error) => {
+        if (error.response.data === 400) {
+          setLoginError("아이디 또는 비밀번호를 다시 확인해주세요.");
+        }
       });
   };
 
@@ -65,9 +66,7 @@ function Login({ setNickname, setUserId }) {
           </div>
           <div className="login_error">{loginError}</div>
           <div className="loginBtn">
-            <button type="submit" onClick={onClickLogin}>
-              로그인
-            </button>
+            <button onClick={onClickLogin}>로그인</button>
           </div>
         </form>
         <div className="loginBtn">

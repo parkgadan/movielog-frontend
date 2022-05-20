@@ -21,8 +21,8 @@ function ReviewBoard() {
     <>
       <section className="review_board">
         <ul>
-          {reviewList.map((review, index) => (
-            <li key={index}>
+          {reviewList.map((review) => (
+            <li key={review.reviewId}>
               <div className="board_user">
                 <p>닉네임</p>
                 {review.nickname}

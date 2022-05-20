@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./index.css";
 
-function Header({ nickname, userId }) {
+function Header({ nickname }) {
   return (
     <>
       <header>
@@ -13,20 +13,12 @@ function Header({ nickname, userId }) {
           <li className="navbar_menu">
             <Link to="/">영화</Link>
             <Link to="/review">리뷰</Link>
-            {nickname ? (
-              <Link to="/my/order" userId={userId}>
-                MY
-              </Link>
-            ) : (
-              <></>
-            )}
+            {nickname ? <Link to="/my/order">MY</Link> : <></>}
           </li>
           {nickname ? (
             <>
               <li className="login">
-                <Link to="/user/me" userId={userId}>
-                  {nickname}님
-                </Link>
+                <Link to="/user/me">{nickname}님</Link>
               </li>
             </>
           ) : (

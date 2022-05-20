@@ -14,7 +14,7 @@ function Main() {
         "Content-type": "application/json",
       },
     }).then((response) => {
-      setMovieData(response.data.movie_list);
+      setMovieData(response.data);
     });
   }, []);
 

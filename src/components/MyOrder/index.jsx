@@ -10,14 +10,12 @@ function MyOrder({ token }) {
     axios({
       method: "GET",
       url: "/api/my/order",
-      data: {
-        userId: token,
-      },
       headers: {
         "Content-type": "application/json",
+        "X-AUTH-TOKEN": token,
       },
     }).then((response) => {
-      setMyOrder(response.data.movie_list);
+      setMyOrder(response.data);
     });
   }, [token]);
 
