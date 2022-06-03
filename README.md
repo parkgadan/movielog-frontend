@@ -5,6 +5,17 @@
 ## 목차
 - [기술](#기술)
 - [구현](#구현)
+	- [메인](#메인) 
+	- [가입](#가입)
+	- [로그인](#로그인)
+	- [프로필](#프로필)
+	- [영화상세](#영화상세)
+	- [리뷰작성](#리뷰작성)
+	- [영화주문](#영화주문)
+	- [리뷰](#리뷰)
+	- [MY](#MY)
+	- [내리뷰](#내리뷰)
+	- [구매내역](#구매내역)
 	- [파일](#파일)
 - [트러블슈팅](#트러블슈팅)
 - [학습내용](#학습내용)
@@ -16,6 +27,39 @@
 
 
 ## 구현
+
+### 메인
+![movielog](https://user-images.githubusercontent.com/90893596/171790921-98db7841-9af3-41a3-a0f7-cbeb9e40ff66.png)
+
+### 가입
+![ImgGIF-20220511204897](https://user-images.githubusercontent.com/90893596/167843851-e06faa68-bb77-499c-852f-235c81ca742c.gif)
+
+### 로그인
+![image](https://user-images.githubusercontent.com/90893596/167973289-4bda9355-c609-4042-aa06-8fa38f1556a3.png)
+
+### 프로필
+![ImgGIF-202205141447109110](https://user-images.githubusercontent.com/90893596/168412675-a9a68fc2-eb09-4e39-8274-948784379c09.gif)
+
+### 영화상세
+![image](https://user-images.githubusercontent.com/90893596/167378031-9e53e58f-b345-4567-8d55-81b28b89c78c.png)
+
+### 리뷰작성
+![image](https://user-images.githubusercontent.com/90893596/167524838-32be1fad-c975-44e8-9a81-51592d18bc47.png)
+
+### 영화주문
+![image](https://user-images.githubusercontent.com/90893596/168042457-225f6fb3-8912-47b6-94bf-2876e73e1838.png)
+
+### 리뷰
+![image-20220514214437004](C:/Users/user/AppData/Roaming/Typora/typora-user-images/image-20220514214437004.png)
+
+### MY
+![image](https://user-images.githubusercontent.com/90893596/168456577-e3bd7981-2da1-4ab4-a163-8ce3bfaebb4c.png)
+
+### 내리뷰
+![ImgGIF-202205161707126](https://user-images.githubusercontent.com/90893596/168551965-ed1bb322-e068-4483-b8bb-d0d81f84652a.gif)
+
+### 구매내역
+![image](https://user-images.githubusercontent.com/90893596/168753932-0a817226-be26-4a7b-a630-a860f6736c7a.png)
 
 ### 파일
 
