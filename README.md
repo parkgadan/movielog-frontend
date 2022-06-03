@@ -50,7 +50,7 @@
 ![image](https://user-images.githubusercontent.com/90893596/168042457-225f6fb3-8912-47b6-94bf-2876e73e1838.png)
 
 ### 리뷰
-![image-20220514214437004](C:/Users/user/AppData/Roaming/Typora/typora-user-images/image-20220514214437004.png)
+![image](https://user-images.githubusercontent.com/90893596/168464225-98963fc0-a11d-479d-9d0b-ce8c78dc2c0c.png)
 
 ### MY
 ![image](https://user-images.githubusercontent.com/90893596/168456577-e3bd7981-2da1-4ab4-a163-8ce3bfaebb4c.png)
