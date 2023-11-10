@@ -93,7 +93,7 @@
 
 
 ## 학습내용
-- [개발일지](https://dannsgo.com/tags/#movielog)
+- [개발일지](https://parkgadan.com/log-movielog/)
 - react router v6
 - axios를 이용한 api 작성
 - custom hook 사용
